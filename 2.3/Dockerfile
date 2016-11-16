@@ -1,4 +1,4 @@
-FROM httplab/ruby:2.3
+FROM httplab/ruby:2.3-trusty
 
 RUN apt-get update -qq && apt-get install -y locales
 
