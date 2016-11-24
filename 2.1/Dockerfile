@@ -1,4 +1,4 @@
-FROM httplab/ruby:2.1
+FROM httplab/ruby:2.1-xenial
 
 RUN apt-get update -qq && apt-get install -y locales
 
