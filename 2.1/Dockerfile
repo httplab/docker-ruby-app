@@ -21,12 +21,14 @@ ENV GEM_HOME /.gem
 ENV PATH $GEM_HOME/bin:$PATH
 ENV BUNDLE_APP_CONFIG $GEM_HOME
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev sudo vim iputils-ping
+RUN apt-get update -qq && \
+    apt-get install -y build-essential libpq-dev sudo vim iputils-ping && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/$USER
-RUN adduser --disabled-password --gecos '' $USER
-RUN adduser $USER sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN adduser --disabled-password --gecos '' $USER && \
+    adduser $USER sudo && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN mkdir $HOME/$APP
 WORKDIR $HOME/$APP
